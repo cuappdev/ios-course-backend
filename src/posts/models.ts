@@ -15,6 +15,10 @@ import {
       versionKey: false,
       transform: function (doc, ret) {
         delete ret._id;
+        // Remove the fractional seconds
+        if (ret.time) {
+          ret.time = ret.time.toISOString().split(".")[0] + "Z";
+        }
       },
     },
     timestamps: {
