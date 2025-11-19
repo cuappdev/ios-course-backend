@@ -12,7 +12,7 @@ import {
 import { MemberService } from "./services";
 import { exampleMember, exampleMembers } from "./examples";
 import { Member } from "./models";
-import { MemberCreationParams } from "./types";
+import { MemberCreationParams, BirdMember } from "./types";
 
 /**
  * A controller that handles API requests related to members.
@@ -63,5 +63,15 @@ export class MemberController extends Controller {
   public async deleteAllMembers(): Promise<string> {
     const deleteCount = await this.memberService.deleteAllMembers();
     return `Successfully deleted ${deleteCount} members`;
+  }
+
+  /**
+   * Retrieves all bird members from bird_members.json.
+   *
+   * @returns An array of all bird members.
+   */
+  @Get("bird-members")
+  public async getBirdMembers(): Promise<BirdMember[]> {
+    return this.memberService.getBirdMembers();
   }
 }

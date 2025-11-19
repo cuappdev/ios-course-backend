@@ -1,5 +1,6 @@
 import { MemberModel } from "./models";
-import { MemberCreationParams } from "./types";
+import { MemberCreationParams, BirdMember } from "./types";
+import birdMembersData from "../../bird_members.json";
 
 /**
  * A service class for managing members.
@@ -32,5 +33,14 @@ export class MemberService {
   public deleteAllMembers = async () => {
     const deleteResult = await MemberModel.deleteMany({});
     return deleteResult.deletedCount;
+  };
+
+  /**
+   * Fetch all bird members from the bird_members.json file.
+   *
+   * @returns A promise resolving to an array of all bird members.
+   */
+  public getBirdMembers = async (): Promise<BirdMember[]> => {
+    return birdMembersData as BirdMember[];
   };
 }
