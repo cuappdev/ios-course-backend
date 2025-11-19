@@ -41,6 +41,16 @@ export class MemberService {
    * @returns A promise resolving to an array of all bird members.
    */
   public getBirdMembers = async (): Promise<BirdMember[]> => {
+    // Generate a random wait time between 2000 ms (2 seconds) and 4000 ms (4 seconds)
+    const minWaitTime = 2000;
+    const maxWaitTime = 4000;
+    const waitTime = Math.floor(
+      Math.random() * (maxWaitTime - minWaitTime + 1) + minWaitTime
+    );
+
+    // Wait for the random amount of time
+    await new Promise((resolve) => setTimeout(resolve, waitTime));
+  
     return birdMembersData as BirdMember[];
   };
 }
